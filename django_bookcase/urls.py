@@ -18,6 +18,7 @@ from django.contrib import admin
 import simplejson
 
 urlpatterns = patterns('',
+    url( r'^$', 'books.views.home'), 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^about/', 'books.views.about') ,
     url(r'^home/', 'books.views.home'),
@@ -27,5 +28,5 @@ urlpatterns = patterns('',
     url(r'^author/(?P<author_pk>\d+)/$', 'books.views.author'),
     url(r'^delete_book/','books.views.delete_book') ,
     url(r'^new_author_book/', 'books.views.new_author_book') ,
-    url(r'^delete_author/', 'books.views.delete_author'), 
+    url(r'^delete_author/', 'books.views.delete_author'),
 )

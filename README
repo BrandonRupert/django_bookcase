@@ -1,3 +1,13 @@
 django_bookcase
 Brandon Rupert
 <barupert@gmail.com>
+
+Book object and Author object. Can view Books and Authors and 
+add Authors and Books. Basically a virtual bookcase, lists books.
+
+To start, 
+$ python manage.py runserver
+And go to 127.0.0.1:8000/ in browser. 
+
+
+
