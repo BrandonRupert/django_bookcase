@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="../static/simple.css" />
+
+
+
+<html>
+
+<h3>All authors</h3>
+<p>In order added</p>
+<ul>
+{%for author in all_authors %}
+<li><a href= '/author/{{author.pk}}'>{{author.name}}</a> <button class="delete_Author" id="{{author.pk}}">Delete with books</button></li>
+{%endfor%}
+</ul>
+
+<h4>navigation</h4>
+
+
+<ul>
+    <li><a href='/books/'>see all books</a></li>
+    <li><a href='/about/'>about bookcase</a></li>
+    <li><a href='/home/'>home</a></li>
+    <li><a href='/add/'>add</a></li>
+</ul>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+
+
+    <script>
+        jQuery(document).ready(function() {
+
+
+            $(".delete_Author").click(function(){
+
+                //console.log( $(this).attr("id")) ;
+
+                var message = {}
+                message['author_pk'] = $(this).attr("id") ; 
+                $.ajax({
+
+
+
+                    type: 'post',
+                    url: '../delete_author/',
+                    data: JSON.stringify(message),
+                    success: function(data){
+                        location.reload();
+                    }
+
+                 })
+            }) ;
+
+
+        }) ;
+
+
+
+
+    </script>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="../static/simple.css" />
+
+
+<html>
+<h3>All books</h3>
+<p>By title</p>
+<ul>
+{%for book in all_books%}
+<li><b><a href='/book/{{book.pk}}'>{{book.title}}</a></b> by <a href='/author/{{book.author_pk}}'>{{book.author_name}}</a> <button class="delete_Book" id="{{book.pk}}">Delete</button></li>
+{%endfor%}
+</ul>
+<h3>Add book with author</h3>
+Book title  <input id="new_Book_title"><br><br>
+Book author <input id="new_Author_name"><br><br>
+<button id="enter_new_Book_Author">enter</button>
+<h4>navigation</h4>
+
+
+<ul>
+    <li><a href='/authors/'>see all authors</li>
+    <li><a href='/about/'>about bookcase</a></li>
+    <li><a href='/home/'>home</a></li>
+    <li><a href='/add/'>add</a></li>
+</ul>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+
+
+    <script>
+        jQuery(document).ready(function() {
+
+
+            $(".delete_Book").click(function(){
+
+                //console.log( $(this).attr("id")) ;
+                var message = {} ;
+                message["book_pk"] = $(this).attr("id") ;
+                $.ajax({
+
+
+
+                    type: 'post',
+                    url: '../delete_book/',
+                    data: JSON.stringify(message),
+                    success: function(data){
+                        location.reload();
+                    }
+
+                 })
+            }) ;
+
+
+            $("#enter_new_Book_Author").click(function(){
+
+                //console.log( $("#new_Book_title").val() + " by " + $("#new_Author_name").val() ) ;
+                var message = {};
+                message["name"] = $("#new_Author_name").val().trim() ;
+                message["title"] = $("#new_Book_title").val().trim();
+                if ( ( message["name"] == "") || ( message["title"] == "")) return ;
+                $.ajax({
+
+
+
+                    type: 'post',
+                    url: '../new_author_book/',
+                    data: JSON.stringify(message),
+                    success: function(data){
+                        location.reload();
+                    }
+
+                 })
+            }) ;
+        }) ;
+
+
+
+
+    </script>
+</html>

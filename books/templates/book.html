@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="../../static/simple.css" />
+
+
+
+
+<html>
+{%for b in book %}
+<h3>{{b.title}} by {{b.author.name}} </h3>
+{%endfor%}
+
+
+
+<h4>navigation</h4>
+
+
+<ul>
+    <li><a href='/books/'>see all books</a></li>
+    <li><a href='/authors/'>see all authors</li>
+    <li><a href='/about/'>about bookcase</a></li>
+    <li><a href='/home/'>home</a></li>
+    <li><a href='/add/'>add</a></li>
+</ul>
+
+
+
+</html>

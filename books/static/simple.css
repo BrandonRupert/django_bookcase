@@ -1,0 +1,10 @@
+/* For Rails <%= stylesheet_link_tag "filename" %> */
+/* For Django <link rel="stylesheet" href="{{ STATIC_URL }}filename" />*/
+
+body{ background-color: #ffffe5; }
+h1 { font-family: "Georgia", Georgia, serif; }
+h2 { font-family: "Georgia", Georgia, serif; }
+h3 { font-family: "Georgia", Georgia, serif; }
+h4 { font-family: "Georgia", Georgia, serif; }
+tt { background-color: #d1e0e0 ; font-family: "Courier New", Courier, monospace;}
+a  { font-family: "Courier New", Courier, monospace;}

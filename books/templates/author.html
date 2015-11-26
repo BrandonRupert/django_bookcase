@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="../../static/simple.css" />
+
+
+
+<html>
+
+{%for a in author %}
+<h3 id=Author_name name="{{a.name}}">Books by {{a.name}}</h3>
+<ul>
+{%for b in a.books %}
+<li><a href='/book/{{b.pk}}'>{{b.title}}</a><button class="delete_Book" id="{{b.pk}}">delete</button></li>
+{%endfor%}
+
+</ul>
+
+{%endfor%}
+
+{%for a in author %}
+<h3>Add book by {{a.name}} </h3>
+{%endfor%}
+Book title  <input id="new_Book_title"><br><br>
+<button id = "enter_new_Book_Author">enter</button>
+<h4>navigation</h4>
+
+
+<ul>
+    <li><a href='/books/'>see all books</a></li>
+    <li><a href='/authors/'>see all authors</li>
+    <li><a href='/about/'>about bookcase</a></li>
+    <li><a href='/home/'>home</a></li>
+    <li><a href='/add/'>add</a></li>
+</ul>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+
+
+    <script>
+        jQuery(document).ready(function() {
+
+
+            $(".delete_Book").click(function(){
+
+                //console.log( $(this).attr("id")) ;
+                    var message = {} ;
+                    message['book_pk'] = $(this).attr("id") ;
+
+                    $.ajax({
+
+
+
+                        type: 'post',
+                        url: '../../delete_book/',
+                        data: JSON.stringify(message),
+                        success: function(data){
+                            location.reload();
+                        }
+
+                     })
+
+            }) ;
+
+
+            $("#enter_new_Book_Author").click(function(){
+
+                //console.log( $("#new_Book_title").val() + " by " + $("#Author_name").attr("name") ) ;
+                var message = {} ;
+                message['title'] = $("#new_Book_title").val().trim()
+                message['name'] = $("#Author_name").attr("name").trim() ;
+                if (( message['title'] == "") || ( message['name'] == "" )) return ;
+                $.ajax({
+
+
+
+                    type: 'post',
+                    url: '../../new_author_book/',
+                    data: JSON.stringify(message),
+                    success: function(data){
+                        location.reload();
+                    }
+
+                 })
+            }) ;
+        }) ;
+
+
+
+
+    </script>
+</html>
