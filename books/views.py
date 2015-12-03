@@ -31,7 +31,6 @@ def books( request):
         book['author_pk'] = Author.objects.get( name = bb.author_name).pk
         book['pk'] = bb.pk
         all_books.append( book )
-    print all_books
     return render(request, "books.html", {'all_books' : all_books})
 def authors( request ) :
     a = Author.objects.order_by( 'pk')
